@@ -2,7 +2,6 @@ package com.sampleApp.library.model.dto;
 
 import java.util.List;
 
-
 public record BookDTO(
         Long id,
         String title,

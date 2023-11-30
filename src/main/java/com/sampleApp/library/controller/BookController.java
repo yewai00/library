@@ -6,13 +6,16 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sampleApp.library.model.dto.BookDTO;
 import com.sampleApp.library.model.dto.CommentDTO;
@@ -51,6 +54,28 @@ public class BookController {
         var book = this.bookService.createBook(bookRequest);
         return ResponseEntity.created(null).body(book);
     }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<BookDTO> updateBook(
+            @PathVariable Long id,
+            @RequestBody BookRequest bookRequest) 
+            throws FileNotFoundException, IOException {
+        var book = this.bookService.updateBook(id, bookRequest);
+        return ResponseEntity.ok(book);
+    }
+    
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteBook(@PathVariable Long id) {
+        this.bookService.deleteBook(id);
+        return ResponseEntity.ok("Deleted Successfully.");
+    }
+    
+    @PostMapping("/{id}/upload")
+    public ResponseEntity<?> uploadPdf(@PathVariable Long id, 
+            @RequestParam("file") MultipartFile file) throws IOException {
+        this.bookService.storePdf(id, file);
+        return ResponseEntity.created(null).body("Uploaded Successfully");
+    }
 
     @GetMapping("/{id}/comments")
     public ResponseEntity<List<CommentDTO>> getAllComment(
@@ -60,10 +85,10 @@ public class BookController {
     }
 
     @PostMapping("/{id}/comments")
-    public ResponseEntity<?> postComment(@PathVariable Long id,
-            CommentRequest commentRequest) {
-
-        return ResponseEntity.created(null).body(null);
+    public ResponseEntity<String> postComment(@PathVariable Long id,
+        @RequestBody CommentRequest commentRequest) {
+        this.bookService.createComment(id, commentRequest);
+        return ResponseEntity.created(null).body("Commented Successfully");
     }
 
 }

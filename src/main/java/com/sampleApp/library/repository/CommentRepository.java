@@ -9,6 +9,9 @@ import com.sampleApp.library.model.entity.Comment;
 import com.sampleApp.library.model.projections.CommentProjection;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
+	
+	void deleteByBookId(Long id);
+	
     @Query("""
             SELECT 
                 c.email AS commenterEmail, 

@@ -21,7 +21,7 @@ public class BookMapper {
                 book.getTag(),
                 book.getRating().ordinal(),
                 book.getPdfLink(),
-                null
+                relatedBookId
                 );
     }
     

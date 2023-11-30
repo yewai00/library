@@ -27,6 +27,6 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `created_at` TIMESTAMP DEFAULT NULL,
   `updated_at` TIMESTAMP DEFAULT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),
-  FOREIGN KEY (`commenter_id`) REFERENCES `commenters` (`id`))
+  FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`commenter_id`) REFERENCES `commenters` (`id`) ON DELETE CASCADE)
 
