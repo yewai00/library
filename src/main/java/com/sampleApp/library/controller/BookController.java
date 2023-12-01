@@ -23,6 +23,8 @@ import com.sampleApp.library.model.request.BookRequest;
 import com.sampleApp.library.model.request.CommentRequest;
 import com.sampleApp.library.service.BookService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/books")
 public class BookController {
@@ -49,7 +51,7 @@ public class BookController {
 
     @PostMapping
     public ResponseEntity<BookDTO> createBook(
-            @RequestBody BookRequest bookRequest)
+           @Valid @RequestBody BookRequest bookRequest)
             throws FileNotFoundException, IOException {
         var book = this.bookService.createBook(bookRequest);
         return ResponseEntity.created(null).body(book);
@@ -58,7 +60,7 @@ public class BookController {
     @PutMapping("/{id}")
     public ResponseEntity<BookDTO> updateBook(
             @PathVariable Long id,
-            @RequestBody BookRequest bookRequest) 
+            @Valid @RequestBody BookRequest bookRequest) 
             throws FileNotFoundException, IOException {
         var book = this.bookService.updateBook(id, bookRequest);
         return ResponseEntity.ok(book);
@@ -86,7 +88,7 @@ public class BookController {
 
     @PostMapping("/{id}/comments")
     public ResponseEntity<String> postComment(@PathVariable Long id,
-        @RequestBody CommentRequest commentRequest) {
+        @Valid @RequestBody CommentRequest commentRequest) {
         this.bookService.createComment(id, commentRequest);
         return ResponseEntity.created(null).body("Commented Successfully");
     }
