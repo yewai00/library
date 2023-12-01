@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sampleApp.library.common.Constants;
@@ -30,6 +31,7 @@ import com.sampleApp.library.repository.CommentRepository;
 import com.sampleApp.library.repository.CommenterRepository;
 import com.sampleApp.library.service.BookService;
 
+@Transactional
 @Service
 public class BookServiceImpl implements BookService {
     
