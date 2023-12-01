@@ -10,11 +10,4 @@ spring:
       max-request-size: 50MB
   mvc:
     static-path-pattern: /resources/**
-  security:
-    oauth2:
-      client:
-        registration:
-          github:
-            clientId: a1f5f0502cd577eca66b
-            clientSecret: c706ccbdc2b4b099123f52eac7699c92b5f15739
   
