@@ -33,7 +33,7 @@ public class Book {
     @Column(name = "cover_image")
     private String coverImg;
 
-    private String generes;
+    private String genres;
 
     private String author;
 

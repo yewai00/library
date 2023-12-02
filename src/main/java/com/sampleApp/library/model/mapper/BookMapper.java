@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.sampleApp.library.enums.Ratings;
 import com.sampleApp.library.model.dto.BookDTO;
 import com.sampleApp.library.model.entity.Book;
 import com.sampleApp.library.model.request.BookRequest;
@@ -16,7 +17,7 @@ public class BookMapper {
                 book.getTitle(),
                 book.getSummary(),
                 book.getCoverImg(),
-                book.getGeneres(),
+                book.getGenres(),
                 book.getAuthor(),
                 book.getTag(),
                 book.getRating().ordinal(),
@@ -30,10 +31,10 @@ public class BookMapper {
         book.setTitle(bookReq.getTitle());
         book.setSummary(bookReq.getSummary());
         book.setCoverImg(imgDir);
-        book.setGeneres(bookReq.getGeneres());
+        book.setGenres(bookReq.getGenres());
         book.setAuthor(bookReq.getAuthor());
         book.setTag(bookReq.getTag());
-        book.setRating(bookReq.getRating());
+        book.setRating(Ratings.values()[bookReq.getRating()]);
         return book;
     }
 

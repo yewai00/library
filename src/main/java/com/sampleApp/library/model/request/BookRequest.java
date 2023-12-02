@@ -1,7 +1,7 @@
 package com.sampleApp.library.model.request;
 
-import com.sampleApp.library.enums.Ratings;
-
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -19,7 +19,7 @@ public class BookRequest {
 
     @NotEmpty(message = "Genres is required.")
     @Size(max = 255)
-    private String generes;
+    private String genres;
 
     @NotEmpty(message = "Author is required.")
     @Size(max = 255)
@@ -28,6 +28,7 @@ public class BookRequest {
     @Size(max = 255)
     private String tag;
 
-    @NotEmpty(message = "Rating is required.")
-    private Ratings rating;
+    @Min(value = 0, message = "Rating Value must be between 0 to 5")
+    @Max(value = 5, message = "Rating Value must be between 0 to 5")
+    private int rating;
 }
