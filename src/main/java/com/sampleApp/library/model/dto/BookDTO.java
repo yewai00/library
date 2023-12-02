@@ -7,7 +7,7 @@ public record BookDTO(
         String title,
         String summary,
         String coverImg,
-        String generes,
+        String genres,
         String author,
         String tag,
         Integer rating,

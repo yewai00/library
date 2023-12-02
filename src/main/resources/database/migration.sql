@@ -1,9 +1,11 @@
+use booklib;
+
 CREATE TABLE IF NOT EXISTS `books` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `summary` varchar(255) DEFAULT NULL,
   `cover_image` varchar(255) DEFAULT NULL,
-  `generes` varchar(255) DEFAULT NULL,
+  `genres` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
   `tag` varchar(255) DEFAULT NULL,
   `rating` tinyint DEFAULT NULL,
