@@ -28,6 +28,5 @@ public class BookRequest {
     @Size(max = 255)
     private String tag;
 
-    @NotEmpty(message = "Rating is required.")
     private Ratings rating;
 }
